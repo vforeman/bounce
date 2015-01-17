@@ -40,16 +40,41 @@
 
       </core-toolbar>
       <section id="section" content>
-          <div class="container" layout vertical center>
 
-              <item-card>
+<!--           <div class="container" layout vertical center>
+              <item-card repeat="{{item in data}}"
                   <img width="70" height="70" 
-                    src="/images/hammer.jpg">
-                  <h2>Sturdy Hammer</h2>
-                  <p>Item Description Goes Here</p>
+                    src="{{item.img_url}}">
+                  <h2>{{item.name}}</h2>
+                  <p>{{item.description}}</p>
               <item-card/>
+          </div> -->
 
-          </div>
+      <polymer-element name="item-container">
+        <template>
+            <template repeat="{{item in data}}">
+              <item-card>
+                <img width="70" height="70" 
+                  src="{{item.img_url}}">
+                <h2>{{item.name}}</h2>
+                <p>{{item.description}}</p>
+              <item-card/>
+            </template>
+        </template>
+        <script>
+         Polymer('item-container', {
+          ready : function() {
+            this.data = [
+              {"name":"hammer", "description":"my hammer", "img_url":"/images/hammer.jpg"},
+              {"name":"charger", "description":"my charger", "img_url":"/images/hammer.jpg"},
+              {"name":"hammer2", "description":"my hammer2", "img_url":"/images/hammer.jpg"}
+            ];
+          }
+        });
+        </script>
+      </polymer-element>
+      <item-container></item-container>
+
       </section>
     </core-header-panel>
 
@@ -60,6 +85,7 @@
 
     <!-- build:js scripts/app.js -->
     <script src="scripts/app.js"></script>
+<!--// <script src="../api/db.js"></script> -->
     <!-- endbuild-->
   </body>
 </html>
