@@ -2,6 +2,7 @@ body {
   background: #fafafa;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #333;
+  height:100%;
 }
 
 core-header-panel {
@@ -59,4 +60,13 @@ paper-tabs.transparent-teal paper-tab::shadow #ink {
 div#site_name{
   margin-left:0px;
   margin-right:0px;
+}
+paper-fab {
+  background-color: #e0a30b;
+  position: relative !important;
+  bottom: 10%;
+  right: 10%;
+  top:90%;
+  left:90%;
+  z-index: 10;
 }
