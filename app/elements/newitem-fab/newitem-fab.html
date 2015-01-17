@@ -11,7 +11,7 @@
         background-color: #e0a30b;
       }
     </style>
-    <paper-fab icon="icons:add" ></paper-fab>
+    <paper-fab icon="{{fabIcon}}" on-click="{{clickHandler}}" ></paper-fab>
     
   </template>
   <script>
@@ -20,8 +20,19 @@
 
       Polymer({
         // define element prototype here
+        ready:function(){
+          this.fabIcon = "add";
+        },
         domReady:function(){
           console.log("newitem-fab ready");
+        },
+        clickHandler:function(){
+          console.log('click');
+          this.fabIcon =="add" ? this.fire('newitem-fab-clicked') : this.fire('newitem-post-clicked');
+          this.toggleFabIcon();
+        },
+        toggleFabIcon:function(){
+          this.fabIcon =="add" ? this.fabIcon ="check" : this.fabIcon = "add";
         }
       });
 
