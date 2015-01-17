@@ -2,40 +2,42 @@
 <link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
 
 <polymer-element name="newitem-fab" attributes="">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-      paper-fab{
-        background-color: #e0a30b;
-      }
-    </style>
-    <paper-fab icon="{{fabIcon}}" on-click="{{clickHandler}}" ></paper-fab>
-    
-  </template>
-  <script>
-    (function () {
-      'use strict';
-
-      Polymer({
-        // define element prototype here
-        ready:function(){
-          this.fabIcon = "add";
-        },
-        domReady:function(){
-          console.log("newitem-fab ready");
-        },
-        clickHandler:function(){
-          console.log('click');
-          this.fabIcon =="add" ? this.fire('newitem-fab-clicked') : this.fire('newitem-post-clicked');
-          this.toggleFabIcon();
-        },
-        toggleFabIcon:function(){
-          this.fabIcon =="add" ? this.fabIcon ="check" : this.fabIcon = "add";
+    <template>
+        <style>
+        :host {
+            display: block;
         }
-      });
+        paper-fab {
+            background-color: #e0a30b;
+        }
+        </style>
+        <paper-fab icon="{{fabIcon}}" on-click="{{clickHandler}}"></paper-fab>
+
+    </template>
+    <script>
+    (function() {
+        'use strict';
+
+        Polymer({
+            // define element prototype here
+            ready: function() {
+                this.fabIcon = "add";
+            },
+            domReady: function() {
+                console.log("newitem-fab ready");
+            },
+            clickHandler: function() {
+                console.log('click');
+                this.fabIcon == "add" ? this.fire('newitem-fab-clicked') : this.fire('newitem-post-clicked');
+
+
+                this.toggleFabIcon();
+            },
+            toggleFabIcon: function() {
+                this.fabIcon == "add" ? this.fabIcon = "check" : this.fabIcon = "add";
+            }
+        });
 
     })();
-  </script>
+    </script>
 </polymer-element>
