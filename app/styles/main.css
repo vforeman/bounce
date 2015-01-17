@@ -4,7 +4,7 @@ body {
   color: #333;
 }
 
-#core_scroll_header_panel {
+core-header-panel {
   width: 100%;
   height: 100%;
   left: 0px;
