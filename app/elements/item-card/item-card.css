@@ -1,0 +1,5 @@
+/*overites the default styling located within the html file*/
+
+:host {
+  display: block;
+}
