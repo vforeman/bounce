@@ -64,9 +64,8 @@ div#site_name{
 paper-fab {
   background-color: #e0a30b;
   position: relative !important;
-  bottom: 10%;
-  right: 10%;
-  top:90%;
-  left:90%;
+  bottom: -157px;
+  right: 1em;
+
   z-index: 10;
 }
