@@ -1,0 +1,30 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
+
+<polymer-element name="newitem-fab" attributes="">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      paper-fab{
+        background-color: #e0a30b;
+      }
+    </style>
+    <paper-fab icon="icons:add" ></paper-fab>
+    
+  </template>
+  <script>
+    (function () {
+      'use strict';
+
+      Polymer({
+        // define element prototype here
+        domReady:function(){
+          console.log("newitem-fab ready");
+        }
+      });
+
+    })();
+  </script>
+</polymer-element>

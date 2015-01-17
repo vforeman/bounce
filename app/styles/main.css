@@ -61,8 +61,8 @@ div#site_name{
   margin-left:0px;
   margin-right:0px;
 }
-paper-fab {
-  background-color: #e0a30b;
+newitem-fab {
+  
   position: relative !important;
   bottom: -157px;
   right: 1em;
