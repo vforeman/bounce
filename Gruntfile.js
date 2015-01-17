@@ -1,8 +1,8 @@
 'use strict';
 var LIVERELOAD_PORT = 35729;
 var lrSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
-var mountFolder = function (dir) {
-  return require('serve-static')(require('path').resolve(dir));
+var mountFolder = function (connect, dir) {
+  return connect.static(require('path').resolve(dir));
 };
 
 // # Globbing
@@ -16,7 +16,6 @@ module.exports = function (grunt) {
   require('time-grunt')(grunt);
   // load all grunt tasks
   require('load-grunt-tasks')(grunt);
-  grunt.loadNpmTasks('web-component-tester');
 
   // configurable paths
   var yeomanConfig = {
@@ -41,7 +40,7 @@ module.exports = function (grunt) {
           '{.tmp,<%= yeoman.app %>}/elements/{,*/}*.css',
           '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
           '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
-          '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+          '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}'
         ]
       },
       js: {
@@ -85,11 +84,11 @@ module.exports = function (grunt) {
       },
       livereload: {
         options: {
-          middleware: function () {
+          middleware: function (connect) {
             return [
               lrSnippet,
-              mountFolder('.tmp'),
-              mountFolder(yeomanConfig.app)
+              mountFolder(connect, '.tmp'),
+              mountFolder(connect, yeomanConfig.app)
             ];
           }
         }
@@ -99,10 +98,9 @@ module.exports = function (grunt) {
           open: {
             target: 'http://localhost:<%= connect.options.port %>/test'
           },
-          middleware: function () {
+          middleware: function (connect) {
             return [
-              mountFolder('.tmp'),
-              mountFolder(yeomanConfig.app)
+              mountFolder(connect, yeomanConfig.app)
             ];
           },
           keepalive: true
@@ -110,9 +108,9 @@ module.exports = function (grunt) {
       },
       dist: {
         options: {
-          middleware: function () {
+          middleware: function (connect) {
             return [
-              mountFolder(yeomanConfig.dist)
+              mountFolder(connect, yeomanConfig.dist)
             ];
           }
         }
@@ -173,7 +171,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>/images',
-          src: '{,*/}*.{png,jpg,jpeg,svg}',
+          src: '{,*/}*.{png,jpg,jpeg}',
           dest: '<%= yeoman.dist %>/images'
         }]
       }
@@ -198,8 +196,7 @@ module.exports = function (grunt) {
     minifyHtml: {
       options: {
         quotes: true,
-        empty: true,
-        spare: true
+        empty: true
       },
       app: {
         files: [{
@@ -235,24 +232,6 @@ module.exports = function (grunt) {
           dest: '.tmp',
           src: ['{styles,elements}/{,*/}*.css']
         }]
-      }
-    },
-    'wct-test': {
-      options: {
-        root: '<%= yeoman.app %>',
-        plugins: {
-          serveStatic: {
-            middleware: function() {
-              return mountFolder('.tmp');
-            }
-          }
-        }
-      },
-      local: {
-        options: {remote: false}
-      },
-      remote: {
-        options: {remote: true}
       }
     },
     // See this tutorial if you'd like to run PageSpeed
@@ -297,9 +276,10 @@ module.exports = function (grunt) {
     ]);
   });
 
-  grunt.registerTask('test', ['wct-test:local']);
-  grunt.registerTask('test:browser', ['connect:test']);
-  grunt.registerTask('test:remote', ['wct-test:remote']);
+  grunt.registerTask('test', [
+    'clean:server',
+    'connect:test'
+  ]);
 
   grunt.registerTask('build', [
     'clean:dist',
