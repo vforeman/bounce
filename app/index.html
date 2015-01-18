@@ -43,7 +43,13 @@
         <newitem-fab></newitem-fab>
       </core-toolbar>
       <section id="section" content>
-        <newitem-input></newitem-input>
+          <newitem-input json_query={{json_query}}></newitem-input>
+          <core-ajax
+               auto
+               url="http://localhost:3000/items"
+               method="PUT"
+               body={{json_query}}
+               ></core-ajax>
         <div class="container" layout vertical center>
           <item-card>
             <img width="70" height="70"

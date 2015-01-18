@@ -33,7 +33,12 @@
           this.toggleFabIcon();
         },
         toggleFabIcon:function(){
-          this.fabIcon =="add" ? this.fabIcon ="check" : this.fabIcon = "add";
+            if (this.fabIcon == "add") {
+                this.fabIcon = "check";
+            } else {
+                this.fabIcon = "add";
+                // Send the request
+            }
         }
       });
  

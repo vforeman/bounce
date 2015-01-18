@@ -1,7 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 
-<polymer-element name="newitem-input" attributes="">
+<polymer-element name="newitem-input" attributes="json_query">
   <template>
     <style>
       :host {
@@ -37,6 +37,9 @@
   <script>
     (function () {
       Polymer({
+        ready: function(){
+            this.json_query = "";
+        },
         // define element prototype here
         domReady: function(){
           this.hideNewItemInput();
@@ -48,6 +51,13 @@
         hideNewItemInput: function(){
           this.$.itemName.style.display = 'none';
           this.$.itemDescription.style.display = 'none';
+        },
+        setJson: function(){
+            this.json_query = '{"name" : ' + this.$.itemName.value + ', "description" : ' + this.$.itemDescription.value + '}';
+        },
+        clearInput: function(){
+            this.$.itemName.value = '';
+            this.$.itemDescription.value = '';
         }
       });
     })();

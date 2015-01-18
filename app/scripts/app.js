@@ -21,6 +21,8 @@
   });
   newitemfab.addEventListener('newitem-post-clicked',function(e){
         newiteminput.hideNewItemInput();
+        newiteminput.setJson();
+        newiteminput.clearInput();
   });
  
 // wrap document so it plays nice with other libraries
