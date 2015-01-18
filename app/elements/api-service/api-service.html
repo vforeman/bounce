@@ -1,0 +1,54 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
+
+<polymer-element name="api-service" attributes="posts">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <core-ajax
+      id="ajax"
+      url="http://158.130.162.213:3000/items/all"
+      method="GET"
+      params="{{data}}"
+      handleAs="json"
+      on-core-response="{{handleResponse}}">
+    </core-ajax>
+
+  </template>
+  <script>
+    (function () {
+      'use strict';
+
+      Polymer({
+        // define element prototype here
+        publish:{
+          data:""
+        },
+        ready:function(){
+          // this.data = "";
+          this.posts="";
+        },
+        domReady:function(){
+          this.$.ajax.go();
+        },
+        handleResponse:function(){
+          console.log("handleResponse");
+        },
+        dataChanged:function(){
+          console.log("data changed");
+          console.log(this.data);
+        },
+        methodChanged:function(){
+          console.log("method changed");
+        },
+        postsChanged:function(){
+          console.log("posts changed" + this.posts);
+        }
+      });
+
+    })();
+  </script>
+</polymer-element>

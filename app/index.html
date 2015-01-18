@@ -21,6 +21,7 @@
   </head>
   <body unresolved fullbleed>
     <paper-fab></paper-fab>
+    <api-service posts="{{posts}}"></api-service>
     <core-header-panel  onprevscrolltop="53" headermargin="128" y="33" condenses headerheight="192" id="core_scroll_header_panel">
       <core-toolbar id="core_toolbar" class="tall">
         <!-- <core-icon-button icon="arrow-back" id="core_icon_button"></core-icon-button> -->
@@ -37,10 +38,10 @@
           </paper-tabs>
         </div>
 
-        <newitem-fab></newitem-fab>
+        <newitem-fab ></newitem-fab>
       </core-toolbar>
       <section id="section" content>
-        <newitem-input></newitem-input>
+        <newitem-input posts="{{posts}}"></newitem-input>
         <div class="container" layout vertical center>
 
           <item-card>
@@ -71,7 +72,7 @@
             </item-card>
 
             </div>
-        
+
 
       </section>
     </core-header-panel>

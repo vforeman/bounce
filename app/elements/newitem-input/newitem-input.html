@@ -1,7 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 
-<polymer-element name="newitem-input" attributes="">
+<polymer-element name="newitem-input" attributes="posts">
   <template>
     <style>
       :host {
@@ -48,6 +48,13 @@
         hideNewItemInput: function(){
           this.$.itemName.style.display = 'none';
           this.$.itemDescription.style.display = 'none';
+          this.$.itemName.value = "";
+          this.$.itemDescription.value = "";
+        },
+        getInput:function(){
+          var input = '{"name" : ' + this.$.itemName.value + ', "description":' + this.$.itemDescription.value + '}';
+          console.log(input);
+          this.posts = input;
         }
       });
     })();

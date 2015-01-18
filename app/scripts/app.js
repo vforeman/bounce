@@ -20,7 +20,9 @@
   	newiteminput.showNewItemInput();
   });
   newitemfab.addEventListener('newitem-post-clicked',function(e){
-  	newiteminput.hideNewItemInput();
+    newiteminput.getInput();
+    newiteminput.hideNewItemInput();
+
   });
 
 // wrap document so it plays nice with other libraries
