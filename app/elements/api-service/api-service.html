@@ -10,10 +10,8 @@
     </style>
     <core-ajax
       id="ajax"
-      url="http://158.130.162.213:3000/items/all"
-      method="GET"
-      params="{{data}}"
-      handleAs="json"
+      url="http://158.130.162.213:3000/items"
+      body='{"name":"foo","description":"bar"}'
       on-core-response="{{handleResponse}}">
     </core-ajax>
 
@@ -25,17 +23,19 @@
       Polymer({
         // define element prototype here
         publish:{
-          data:""
+
         },
         ready:function(){
           // this.data = "";
           this.posts="";
         },
         domReady:function(){
+          this.$.ajax.method="POST";
           this.$.ajax.go();
         },
-        handleResponse:function(){
+        handleResponse:function(e){
           console.log("handleResponse");
+          console.log(e);
         },
         dataChanged:function(){
           console.log("data changed");
