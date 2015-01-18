@@ -7,7 +7,6 @@
     "polymer": "Polymer/polymer#^0.4.0",
     "webcomponentsjs": "~0.5.2",
     "firebase-element": "Polymer/firebase-element#~0.5.2",
-    "core-header-panel": "git@github.com:Polymer/core-header-panel.git#a9ae343ba10676590cf6e049352ec19bdfdd99e5"
   },
   "devDependencies": {
     "polymer-test-tools": "Polymer/polymer-test-tools#^0.4.0"
