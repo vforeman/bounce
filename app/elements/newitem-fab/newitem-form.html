@@ -1,0 +1,91 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+
+<polymer-element name="newitem-form" attributes="">
+    <template>
+        <style>
+        :host {
+            display: block;
+        }
+        paper-input {
+            width: 80%;
+        }
+        paper-input-decorator {
+            max-width: 80%;
+        }
+        paper-input.narrow {
+            width: 150px;
+        }
+        :host {
+            display: block;
+        }
+        paper-fab {
+            background-color: #e0a30b;
+        }
+        </style>
+
+
+
+        <!-- item name user input field -->
+        <paper-input id="itemName" name="itemName" label="Item name" floatingLabel></paper-input>
+
+        <!-- item photo upload -->
+
+
+
+        <!-- item description user input field -->
+        <paper-input id="itemDescription" name="itemDescription" multiline label="Description" floatingLabel></paper-input>
+
+        <paper-fab icon="{{fabIcon}}" on-click="{{clickHandler}}"></paper-fab>
+
+
+
+    </template>
+    <script>
+    (function() {
+        Polymer({
+            // define element prototype here
+            domReady: function() {
+                this.hideNewItemInput();
+            },
+            showNewItemInput: function() {
+                this.$.itemName.style.display = 'block';
+                this.$.itemDescription.style.display = 'block';
+            },
+            hideNewItemInput: function() {
+                this.$.itemName.style.display = 'none';
+                this.$.itemDescription.style.display = 'none';
+            }
+
+            // define element prototype here
+                ready: function() {
+                this.fabIcon = "add";
+            },
+            domReady: function() {
+                console.log("newitem-fab ready");
+            },
+            clickHandler: function() {
+                console.log('click');
+                this.fabIcon == "add" ? this.fire('newitem-fab-clicked') : this.fire('newitem-post-clicked');
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:3000/items",
+                    data: {itemName:this.$.itemName.val(), itemDescription: this.$.itemDescription.val()},
+                    success: success,
+                    dataType: dataType
+                });
+
+
+
+                this.toggleFabIcon();
+            },
+            toggleFabIcon: function() {
+                this.fabIcon == "add" ? this.fabIcon = "check" : this.fabIcon = "add";
+            }
+        });
+
+    })();
+    </script>
+</polymer-element>
